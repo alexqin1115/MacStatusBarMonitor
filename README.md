@@ -95,6 +95,23 @@ changes); the full stats snapshot is only published while the panel is open,
 and the expensive collector (SMC) is skipped while it's closed —
 idle cost stays ~1–3% of one core.
 
+## Private APIs (read this)
+
+Most data comes from public APIs (`host_statistics`, IOKit power sources,
+`sysctl`). Two sources are **undocumented**, both read-only and needing no
+sudo, helper or entitlements:
+
+- **IOReport** (`/usr/lib/libIOReport.dylib`, loaded dynamically at runtime) —
+  live CPU/GPU clock speeds and CPU/GPU power. This is a private macOS library,
+  the same source `powermetrics` and tools like macmon use. Symbols or
+  behavior may change in a future macOS release, and private API use makes the
+  app unsuitable for the Mac App Store.
+- **AppleSMC** user client — temperatures and fan speeds (see below).
+
+Every call fails soft: if a source is missing or changes, that metric shows
+`—` / "Unavailable" and the rest of the app keeps working. Details are in the
+header of `Providers/ClockProvider.swift`.
+
 ## V2 sensors and their limitation
 
 Temperatures and fan speeds come from the SMC via the `AppleSMC` IOKit user
