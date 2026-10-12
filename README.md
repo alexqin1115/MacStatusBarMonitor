@@ -119,3 +119,7 @@ SRCS=$(find MacStatusBarMonitor/Models MacStatusBarMonitor/Providers MacStatusBa
 swiftc -parse-as-library -target arm64-apple-macos13.0 $SRCS tools/PreviewMain.swift -o /tmp/msbm_preview
 /tmp/msbm_preview   # writes /tmp/msbm_panel_{light,dark}.png
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE).
