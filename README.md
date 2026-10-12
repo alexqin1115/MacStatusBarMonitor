@@ -21,6 +21,18 @@ Anything the OS doesn't expose without elevated privileges is shown as `—`
 or "Unavailable" rather than guessed (for example, per-process GPU usage and
 per-GPU-core load).
 
+## Install
+
+1. Download `MacStatusBarMonitor-v1.0.zip` from the [latest release](https://github.com/alexqin1115/MacStatusBarMonitor/releases/latest).
+2. Unzip and drag `MacStatusBarMonitor.app` into `/Applications`.
+3. The app is ad-hoc signed, not notarized, so macOS blocks the first launch. Either right-click the app and choose **Open**, or run:
+
+```bash
+xattr -cr /Applications/MacStatusBarMonitor.app
+```
+
+Requires macOS 13 or later.
+
 ## Build
 
 Open `MacStatusBarMonitor.xcodeproj` in Xcode and press Run, or from the
